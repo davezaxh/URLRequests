@@ -11,7 +11,7 @@ and libraries used to build this project.
 Before you use this program, you would need to install the required libraries as mentioned above and can be done using the following command:
 
 ```
-pip3 install -r requrlrequests.txt
+pip3 install -r requirements.txt
 ```
 
 ### Usage : 
