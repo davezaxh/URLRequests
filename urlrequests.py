@@ -5,7 +5,7 @@ parser = optparse.OptionParser()
 optparse.OptionParser.format_epilog = lambda self, formatter: self.epilog
 parser = optparse.OptionParser(epilog="If time is not specified, a random time interval \nbetween 5 to 30 seconds would be selected between each request.\nExample: python3 urlrequests.py --link https://bit.ly/ProfileGitHub --time 20\n")
 
-parser.add_option("-l","--link",dest="link", help="[Reuqired] Used to specify a link for sending requests")
+parser.add_option("-l","--link",dest="link", help="[Required] Used to specify a link for sending requests")
 parser.add_option("-t","--time",dest="time", help="[Optional] Used to specify the time interval between each request")
 (options,arguments) = parser.parse_args()
 headers = {'Content-Type': 'text/html',
@@ -36,5 +36,11 @@ try:
 
 except KeyboardInterrupt:
     print("[-] CTRL + C Detected...\n[-] Quiting.. ")
-
-        
+except requests.TooManyRedirects:
+    print("[-] Too Many Redirects...\n[-] Try again after some time...")
+except requests.Timeout:
+    print("[-] Timeout...\n[-] Try again after some time...")
+except requests.ConnectionError:
+    print("[-] Connection Error...\n[-] Try again after some time...")
+except requests.ConnectTimeout:
+    print("[-] Connection Timeout....\n[-] Try again after some time...")
